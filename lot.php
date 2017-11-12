@@ -13,7 +13,7 @@ date_default_timezone_set('Europe/Moscow');
 function time_formatting($time) {
     $now = strtotime('now');
     if (($now - $time) > 86400) {
-        return gmdate("d:m:y", $time) . " в " . gmdate("H:i");
+        return gmdate("d.m.y", $time) . " в " . gmdate("H:i");
     }
     if (($now - $time) <= 86400) {
         if (($now - $time) < 3600) {
