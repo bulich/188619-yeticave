@@ -1,5 +1,7 @@
 <?php
 
+define('ONEDAY', 86400);    //Временная метка для одних суток(86400 секунд)
+define('ONEHOUR', 3600);    //Временная метка для одного часа(3600 секунд)
 
 $bets = [
     ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
@@ -10,20 +12,17 @@ $bets = [
 
 date_default_timezone_set('Europe/Moscow');
 
-function time_formatting($time) {
-    $now = strtotime('now');
-    if (($now - $time) > 86400) {
+function format_time($time) {
+    $time_diff = strtotime('now') - $time;
+    if ($time_diff > ONEDAY) {
         return gmdate("d.m.y", $time) . " в " . gmdate("H:i");
     }
-    if (($now - $time) <= 86400) {
-        if (($now - $time) < 3600) {
-            return ltrim(gmdate('i', $time), 0) . " минут назад";
-        }
-        if (($now - $time) >= 3600) {
-            return gmdate('G', $time) . " часов назад";
-        }
+    elseif ($time_diff >= ONEHOUR) {
+        return gmdate('G', $time) . " часов назад";
     }
-    else return "Указано неверное время";
+    elseif ($time_diff < ONEHOUR) {
+        return ltrim(gmdate('i', $time), 0) . " минут назад";
+    }
 }
 ?>
 
@@ -132,7 +131,7 @@ function time_formatting($time) {
                         <tr class="history__item">
                             <td class="history__name"><?=$value['name']; ?></td>
                             <td class="history__price"><?=$value['price']; ?> р</td>
-                            <td class="history__time"><?=time_formatting($value['ts']); ?></td>
+                            <td class="history__time"><?=format_time($value['ts']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </table>
