@@ -8,8 +8,7 @@
       extract($data, EXTR_PREFIX_SAME, "wddx");
       ob_start();
       require_once(TEMPLATE_DIR_PATH . $path . TEMPLATE_EXT);
-      $result = ob_get_clean();
-      return $result;
+      return ob_get_clean();
     }
     return "";
   }

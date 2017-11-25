@@ -129,8 +129,8 @@ function format_time($time) {
                     <table class="history__list">
                     <?php foreach($bets as $key => $value): ?>
                         <tr class="history__item">
-                            <td class="history__name"><?=$value['name']; ?></td>
-                            <td class="history__price"><?=$value['price']; ?> р</td>
+                            <td class="history__name"><?=htmlspecialchars($value['name']); ?></td>
+                            <td class="history__price"><?=htmlspecialchars($value['price']); ?> р</td>
                             <td class="history__time"><?=format_time($value['ts']); ?></td>
                         </tr>
                     <?php endforeach; ?>
