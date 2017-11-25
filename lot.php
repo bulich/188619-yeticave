@@ -1,28 +1,21 @@
 <?php
 
-define('ONEDAY', 86400);    //Временная метка для одних суток(86400 секунд)
-define('ONEHOUR', 3600);    //Временная метка для одного часа(3600 секунд)
+require_once("data.php");
+require_once("functions.php");
 
-$bets = [
-    ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
-    ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
-    ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
-    ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
-];
+$lot = null;
 
-date_default_timezone_set('Europe/Moscow');
+if (isset($_GET['id'])) {
+	foreach ($items as $key => $value) {
+		if ($key == $_GET['id']) {
+			$lot = $value;
+			break;
+		}
+    }
+}
 
-function format_time($time) {
-    $time_diff = strtotime('now') - $time;
-    if ($time_diff > ONEDAY) {
-        return gmdate("d.m.y", $time) . " в " . gmdate("H:i");
-    }
-    elseif ($time_diff >= ONEHOUR) {
-        return gmdate('G', $time) . " часов назад";
-    }
-    elseif ($time_diff < ONEHOUR) {
-        return ltrim(gmdate('i', $time), 0) . " минут назад";
-    }
+if (! $lot) {
+	http_response_code(404);
 }
 ?>
 
@@ -30,7 +23,7 @@ function format_time($time) {
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>DC Ply Mens 2016/2017 Snowboard</title>
+    <title><?=htmlspecialchars($lot['name']); ?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -84,23 +77,14 @@ function format_time($time) {
         </ul>
     </nav>
     <section class="lot-item container">
-        <h2>DC Ply Mens 2016/2017 Snowboard</h2>
+        <h2><?=htmlspecialchars($lot['name']); ?></h2>
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
-                    <img src="img/lot-image.jpg" width="730" height="548" alt="Сноуборд">
+                    <img src="<?=htmlspecialchars($lot['url']); ?>" width="730" height="548" alt="<?=htmlspecialchars($lot['name']); ?>">
                 </div>
-                <p class="lot-item__category">Категория: <span>Доски и лыжи</span></p>
-                <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
-                    снег
-                    мощным щелчкоми четкими дугами. Стекловолокно Bi-Ax, уложенное в двух направлениях, наделяет этот
-                    снаряд
-                    отличной гибкостью и отзывчивостью, а симметричная геометрия в сочетании с классическим прогибом
-                    кэмбер
-                    позволит уверенно держать высокие скорости. А если к концу катального дня сил совсем не останется,
-                    просто
-                    посмотрите на Вашу доску и улыбнитесь, крутая графика от Шона Кливера еще никого не оставляла
-                    равнодушным.</p>
+                <p class="lot-item__category">Категория: <span><?=htmlspecialchars($lot['category']); ?></span></p>
+                <p class="lot-item__description"><?=htmlspecialchars($lot['name']); ?></p>
             </div>
             <div class="lot-item__right">
                 <div class="lot-item__state">
@@ -110,7 +94,7 @@ function format_time($time) {
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost">11 500</span>
+                            <span class="lot-item__cost"><?=htmlspecialchars($lot['price']); ?></span>
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span>12 000 р</span>
