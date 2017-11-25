@@ -21,7 +21,6 @@ $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
 
 $title = "Yeticave";
 
-
 require_once("functions.php");
 require_once("data.php");
 
@@ -29,3 +28,5 @@ $page_content = renderTemplate("index", ['categories' => $categories, 'items' =>
 $layout_content = renderTemplate("layout", ['content' => $page_content, 'title' => $title, 'is_auth' => $is_auth, 'user_name' => $user_name, 'user_avatar' => $user_avatar]);
 
 print($layout_content);
+
+   
