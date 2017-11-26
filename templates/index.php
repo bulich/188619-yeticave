@@ -18,11 +18,11 @@
         <?php foreach ($items as $key => $value): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?=$value['url']; ?>" width="350" height="260" alt="<?=$value['name']; ?>">
+                    <img src="img/<?=$value['path']; ?>" width="350" height="260" alt="<?=$value['name']; ?>">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?=$value['category']; ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="lot.html"><?=htmlspecialchars($value['name']); ?></a></h3>
+                    <h3 class="lot__title"><a class="text-link" href="lot.php<?="?id=" . $key;?>"><?=htmlspecialchars($value['lot-name']); ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
