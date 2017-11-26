@@ -11,7 +11,7 @@
         </ul>
     </section>
     <section class="lots">
-        <div class="lots__header">
+        <div class="lots__header"></div>
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
