@@ -30,8 +30,4 @@
       }
   }
 
-  function validateInt($value) { 
-    return filter_var($value, FILTER_VALIDATE_INT); 
-  }
-
 ?>
