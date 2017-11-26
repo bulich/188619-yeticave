@@ -21,7 +21,6 @@ $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
 
 $title = "Yeticave";
 
-
 require_once("functions.php");
 require_once("data.php");
 
