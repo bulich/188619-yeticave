@@ -1,9 +1,7 @@
 <?php
-$is_auth = (bool) rand(0, 1);
+session_start();
 
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
-
+require_once('userdata.php');
 // устанавливаем часовой пояс в Московское время
 date_default_timezone_set('Europe/Moscow');
 
@@ -25,6 +23,6 @@ require_once("functions.php");
 require_once("data.php");
 
 $page_content = renderTemplate("index", ['categories' => $categories, 'items' => $items, 'lot_time_remaining' => $lot_time_remaining]);
-$layout_content = renderTemplate("layout", ['content' => $page_content, 'title' => $title, 'is_auth' => $is_auth, 'user_name' => $user_name, 'user_avatar' => $user_avatar]);
+$layout_content = renderTemplate("layout", ['content' => $page_content, 'title' => $title]);
 
 print($layout_content);

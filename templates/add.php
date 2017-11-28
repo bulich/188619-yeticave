@@ -38,7 +38,7 @@
       </div>
 
 
-      <?php $class = (!empty($errors['Категория'])) ? "form__item--invalid" : "";
+      <?php $class = ($lot['category'] == "Выберите категорию") ? "form__item--invalid" : "";
           $value = (!empty($lot['category'])) ? $lot['category'] : ""; ?> 
       <div class="form__item <?=$class;?>">
         <label for="category">Категория</label>
@@ -51,7 +51,7 @@
           <option value="Инструменты">Инструменты</option>
           <option value="Разное">Разное</option>
         </select>
-        <span class="form__error"><?=$errors['Категория']; ?></span>
+        <span class="form__error"><?="Выберите категорию"?></span>
       </div>
     </div>
 

@@ -7,6 +7,7 @@
   
   date_default_timezone_set('Europe/Moscow');
 
+
   function renderTemplate ($path, $data) {
     if(file_exists(TEMPLATE_DIR_PATH . $path . TEMPLATE_EXT)) {
       extract($data, EXTR_PREFIX_SAME, "wddx");
@@ -29,5 +30,16 @@
           return ltrim(gmdate('i', $time), 0) . " минут назад";
       }
   }
+
+  function searchUserByEmail($email, $users) {
+	$result = null;
+	foreach ($users as $user) {
+		if ($user['email'] == $email) {
+			$result = $user;
+			break;
+		}
+	}
+    return $result;
+}
 
 ?>
