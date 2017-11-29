@@ -11,14 +11,14 @@
         </ul>
     </section>
     <section class="lots">
-        <div class="lots__header">
+        <div class="lots__header"></div>
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
         <?php foreach ($items as $key => $value): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="img/<?=$value['path']; ?>" width="350" height="260" alt="<?=$value['name']; ?>">
+                    <img src="img/<?=$value['path']; ?>" width="350" height="260" alt="<?=$value['lot-name']; ?>">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?=$value['category']; ?></span>

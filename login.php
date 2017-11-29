@@ -1,6 +1,6 @@
 <?php
 require_once('functions.php');
-require_once('userdata.php');
+require_once('data.php');
 require_once('userdata.php');
 
 session_start();
@@ -40,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 else {
-	$page_content = renderTemplate('login', []);
+	$page_content = renderTemplate('login', ['errors' =>'']);
 }
 
 $layout_content = renderTemplate('layout', [
 	'content'    => $page_content,
 	'categories' => [],
-	'title'      => 'GifTube - Вход на сайт'
+  'title'      => 'GifTube - Вход на сайт',
 ]);
 
 print($layout_content);
