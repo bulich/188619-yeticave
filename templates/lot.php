@@ -33,6 +33,7 @@
                 <p class="lot-item__description"><?=htmlspecialchars($lot['message']); ?></p>
             </div>
             <div class="lot-item__right">
+            <?php if (isset($_SESSION['user'])): ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
                         10:54:12
@@ -40,7 +41,7 @@
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?=htmlspecialchars($lot['price']); ?></span>
+                            <span class="lot-item__cost"><?=htmlspecialchars($lot['lot-rate']); ?></span>
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span><?=htmlspecialchars($lot['lot-rate']); ?></span>
@@ -54,6 +55,7 @@
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
                 </div>
+            <?php endif; ?>
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
                     <table class="history__list">
