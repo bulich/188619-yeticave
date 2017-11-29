@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 else {
-	$page_content = renderTemplate('login', []);
+	$page_content = renderTemplate('login', ['errors' =>'']);
 }
 
 $layout_content = renderTemplate('layout', [

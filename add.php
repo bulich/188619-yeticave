@@ -7,10 +7,14 @@ require_once("data.php");
 
 session_start();
 
+$lot = null;
+
 if (isset($_SESSION['user'])) {
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
+
+
 		$lot = $_POST;
 		$required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
 		$dict = ['lot-name' => 'Название лота', 'category' => 'Категория', 'message' => 'Описание', 'lot-rate' => 'Начальная цена', 'lot-step' => 'Шаг ставки', 'lot-date' => 'Дата окончания торгов'];
@@ -63,16 +67,13 @@ if (isset($_SESSION['user'])) {
 		}
 	}
 	else {
-		$page_content = renderTemplate('add', []);
+		$page_content = renderTemplate('add', ['errors' => '', 'lot' => $lot]);
 	}
 
 	$layout_content = renderTemplate('layout', [
 		'content'    => $page_content,
 		'categories' => [],
-		'title'      => 'Yeticave - Добавление добавление лота',
-		'is_auth' => $is_auth,
-		'user_name' => $user_name,
-		'user_avatar' => $user_avatar
+		'title'      => 'Yeticave - Добавление добавление лота'
 	]);
 
 	print($layout_content);

@@ -82,13 +82,13 @@
       </div>
     </div>
 
-    <?php $class = (!empty($errors['Значение начальной цены'])) ? "form__item--invalid" : "";
+    <?php $class = (!empty($errors['Значение начанльной цены'])) ? "form__item--invalid" : "";
           $value = (!empty($lot['lot-rate'])) ? $lot['lot-rate'] : ""; ?>
-    <div class="form__container-three <?=$class;?>">
-      <div class="form__item form__item--small">
+    <div class="form__container-three">
+      <div class="form__item form__item--small <?=$class;?>">
         <label for="lot-rate">Начальная цена</label>
         <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=$value;?>" >
-        <span class="form__error"><?=$errors['Значение начальной цены']; ?></span>
+        <span class="form__error"><?=$errors['Значение начанльной цены']; ?></span>
       </div>
 
       <?php $class = (!empty($errors['Значение шага'])) ? "form__item--invalid" : "";
