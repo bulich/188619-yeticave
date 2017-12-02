@@ -4,6 +4,8 @@
   define('TEMPLATE_EXT', '.php');
   define('ONEDAY', 86400);    //Временная метка для одних суток(86400 секунд)
   define('ONEHOUR', 3600);    //Временная метка для одного часа(3600 секунд)
+
+    session_start();
   
     // устанавливаем часовой пояс в Московское время
     date_default_timezone_set('Europe/Moscow');

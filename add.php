@@ -5,16 +5,12 @@ $title = "Add new lot";
 require_once("functions.php");
 require_once("data.php");
 
-session_start();
-
 $lot = null;
 
 if (isset($_SESSION['user'])) {
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
-
-
 		$lot = $_POST;
 		$required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
 		$dict = ['lot-name' => 'Название лота', 'category' => 'Категория', 'message' => 'Описание', 'lot-rate' => 'Начальная цена', 'lot-step' => 'Шаг ставки', 'lot-date' => 'Дата окончания торгов'];
@@ -81,5 +77,5 @@ if (isset($_SESSION['user'])) {
 
 else {
 	http_response_code(403);
-  print("Пожалуйста, авторизуйтесь");
+  header("Location: /login.php");
 }

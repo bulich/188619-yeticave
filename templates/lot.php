@@ -33,7 +33,7 @@
                 <p class="lot-item__description"><?=htmlspecialchars($lot['message']); ?></p>
             </div>
             <div class="lot-item__right">
-            <?php if (isset($_SESSION['user'])): ?>
+            <?php if (isset($_SESSION['user']) && !(isset($_COOKIE["mybet[0]"])) ): ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
                         10:54:12
@@ -47,7 +47,7 @@
                             Мин. ставка <span><?=htmlspecialchars($lot['lot-rate']); ?></span>
                         </div>
                     </div>
-                    <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
+                    <form class="lot-item__form" method="post">
                         <p class="lot-item__form-item">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="number" name="cost" placeholder="12 000">
