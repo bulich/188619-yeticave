@@ -1,3 +1,7 @@
+CREATE DATABASE yeticave;
+
+USE yeticave;
+
 CREATE TABLE categories (
   name CHAR(128) PRIMARY KEY
 );
@@ -13,7 +17,8 @@ CREATE TABLE lot (
   step INT,
   author_id INT,
   winner_id INT,
-  category_name CHAR(128)
+  category_name CHAR(128),
+  is_open INT
 );
 
 CREATE TABLE bet (
@@ -28,6 +33,7 @@ CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   reg_date DATE,
   email CHAR(128),
+  username CHAR(128),
   pass CHAR(255),
   avatar CHAR(255),
   contacts TEXT(300),
