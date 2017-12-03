@@ -1,7 +1,6 @@
 <?php
 
-$title = "Add new lot";
-
+require_once("init.php");
 require_once("functions.php");
 require_once("data.php");
 
@@ -13,7 +12,14 @@ if (isset($_SESSION['user'])) {
 		
 		$lot = $_POST;
 		$required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
-		$dict = ['lot-name' => 'Название лота', 'category' => 'Категория', 'message' => 'Описание', 'lot-rate' => 'Начальная цена', 'lot-step' => 'Шаг ставки', 'lot-date' => 'Дата окончания торгов'];
+		$dict = [
+						'lot-name' => 'Название лота',
+						'category' => 'Категория',
+						'message' => 'Описание',
+						'lot-rate' => 'Начальная цена',
+						'lot-step' => 'Шаг ставки',
+						'lot-date' => 'Дата окончания торгов'
+					];
 		$errors = [];
 		foreach ($_POST as $key => $value) {
 			if (in_array($key, $required)) {
@@ -56,17 +62,17 @@ if (isset($_SESSION['user'])) {
 
 			
 		if (count($errors)) {
-			$page_content = renderTemplate('add', ['lot' => $lot, 'errors' => $errors]);
+			$page_content = render_template('add', ['lot' => $lot, 'errors' => $errors]);
 		}
 		else {
-			$page_content = renderTemplate('lot', ['lot' => $lot, 'bets' => $bets]);
+			$page_content = render_template('lot', ['lot' => $lot, 'bets' => $bets, 'id' => ""]);
 		}
 	}
 	else {
-		$page_content = renderTemplate('add', ['errors' => '', 'lot' => $lot]);
+		$page_content = render_template('add', ['errors' => '', 'lot' => $lot]);
 	}
 
-	$layout_content = renderTemplate('layout', [
+	$layout_content = render_template('layout', [
 		'content'    => $page_content,
 		'categories' => [],
 		'title'      => 'Yeticave - Добавление добавление лота'

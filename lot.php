@@ -1,8 +1,7 @@
 <?php
-
+require_once("init.php");
 require_once("functions.php");
 require_once("data.php");
-
 
 $lot = null;
 
@@ -12,8 +11,7 @@ if (isset($_GET['id'])) {
     $lot = $value;
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $bet = $_POST;
-      if ($bet['cost'] > $lot['lot-rate']) {
+      if ($_POST['cost'] > $lot['lot-rate']) {
         $mybet['cost'] = $_POST['cost'];
         $mybet['time'] = $now;
         $expire = strtotime("+30 days");
@@ -23,16 +21,27 @@ if (isset($_GET['id'])) {
       }   
     }
 
-    $page_content = renderTemplate("lot", ['categories' => $categories, 'lot' => $lot, 'lot_time_remaining' => $lot_time_remaining, 'bets' => $bets, 'id' => $key]);
-    $layout_content = renderTemplate("layout", ['content' => $page_content, 'title' => "Просмотр лота"]);
+    $page_content = render_template("lot", [
+                                            'categories' => $categories,
+                                            'lot' => $lot,
+                                            'lot_time_remaining' => $lot_time_remaining, 
+                                            'bets' => $bets, 'id' => $key
+                                          ]);
+    $layout_content = render_template("layout", [
+                                                'content' => $page_content,
+                                                'title' => "Просмотр лота"
+                                                ]);
     print($layout_content);
-
   }
   }
 }
 
 if (! $lot) {
   http_response_code(404);
-  print("Страница не найдена");
+  $layout_content = render_template("layout", [
+    'content' => "<h1>К сожалению, страница не найдена :(</h1>",
+    'title' => "Страница не найдена"
+    ]);
+  print($layout_content);
 }
 

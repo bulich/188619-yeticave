@@ -1,27 +1,3 @@
-
-<main>
-    <nav class="nav">
-        <ul class="nav__list container">
-            <li class="nav__item">
-                <a href="">Доски и лыжи</a>
-            </li>
-            <li class="nav__item">
-                <a href="">Крепления</a>
-            </li>
-            <li class="nav__item">
-                <a href="">Ботинки</a>
-            </li>
-            <li class="nav__item">
-                <a href="">Одежда</a>
-            </li>
-            <li class="nav__item">
-                <a href="">Инструменты</a>
-            </li>
-            <li class="nav__item">
-                <a href="">Разное</a>
-            </li>
-        </ul>
-    </nav>
     <section class="lot-item container">
         <h2><?=htmlspecialchars($lot['lot-name']); ?></h2>
         <div class="lot-item__content">
@@ -33,10 +9,10 @@
                 <p class="lot-item__description"><?=htmlspecialchars($lot['message']); ?></p>
             </div>
             <div class="lot-item__right">
-            <?php if (isset($_SESSION['user']) && !(isset($_COOKIE["mybet[$id]"])) ): ?>
+            <?php if (isset($_SESSION['user']) && empty($_COOKIE["mybet"][$id]) ): ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
-                        10:54:12
+                        11:36
                     </div>
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
@@ -59,7 +35,7 @@
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
                     <table class="history__list">
-                    <?php foreach($bets as $key => $value): ?>
+                    <?php foreach($bets as $value): ?>
                         <tr class="history__item">
                             <td class="history__name"><?=htmlspecialchars($value['name']); ?></td>
                             <td class="history__price"><?=htmlspecialchars($value['price']); ?> р</td>

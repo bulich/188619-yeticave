@@ -42,7 +42,8 @@ $items = [
         'price' => '7500',
         'path' => 'lot-5.jpg',
         'lot-rate' => '10000',
-        'lot-name' => 'Куртка для сноуборда DC Mutiny Charocal'
+        'lot-name' => 'Куртка для сноуборда DC Mutiny Charocal',
+        'message' => 'Ботинки для сноуборда DC Mutiny Charocal'
     ],
     [
         'lot-name' => 'Маска Oakley Canopy',
@@ -50,7 +51,8 @@ $items = [
         'price' => '5400',
         'path' => 'lot-6.jpg',
         'lot-rate' => '10000',
-        'lot-name' => 'Куртка для сноуборда DC Mutiny Charocal'
+        'lot-name' => 'Куртка для сноуборда DC Mutiny Charocal',
+        'message' => 'Ботинки для сноуборда DC Mutiny Charocal'
     ]
 ];
 

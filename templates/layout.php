@@ -24,10 +24,10 @@
         <nav class="user-menu">
         <?php if (isset($_SESSION['user'])): ?>
             <div class="user-menu__image">
-                <img src="<?=strip_tags($_SESSION['user']['avatar']); ?>" width="40" height="40" alt="Пользователь">
+                <img src="<?=htmlspecialchars($_SESSION['user']['avatar']); ?>" width="40" height="40" alt="Пользователь">
             </div>
             <div class="user-menu__logged">
-                <p><?=strip_tags($_SESSION['user']['name']); ?></p>
+                <p><?=htmlspecialchars($_SESSION['user']['name']); ?></p>
                 <a href="/logout.php">Выход</a>
             </div>
         <?php else: ?>
@@ -43,6 +43,30 @@
         </nav>
     </div>
 </header>
+
+<main>
+  <nav class="nav">
+    <ul class="nav__list container">
+      <li class="nav__item">
+        <a href="all-lots.html">Доски и лыжи</a>
+      </li>
+      <li class="nav__item">
+        <a href="all-lots.html">Крепления</a>
+      </li>
+      <li class="nav__item">
+        <a href="all-lots.html">Ботинки</a>
+      </li>
+      <li class="nav__item">
+        <a href="all-lots.html">Одежда</a>
+      </li>
+      <li class="nav__item">
+        <a href="all-lots.html">Инструменты</a>
+      </li>
+      <li class="nav__item">
+        <a href="all-lots.html">Разное</a>
+      </li>
+    </ul>
+  </nav>
 
 <?=$content; ?>
 

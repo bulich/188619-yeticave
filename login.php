@@ -1,4 +1,5 @@
 <?php
+require_once("init.php");
 require_once('functions.php');
 require_once('data.php');
 require_once('userdata.php');
@@ -22,27 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (password_verify($form['password'], $user['password'])) {
 			$_SESSION['user'] = $user;
 		}
-		else {
 			$errors[$dict['password']] = 'Неверный пароль';
-		}
 	}
-	else {
-		$errors[$dict['email']] = 'Такой пользователь не найден';
-	}
+	$errors[$dict['email']] = 'Такой пользователь не найден';
+
 
 	if (count($errors)) {
-		$page_content = renderTemplate('login', ['form' => $form, 'errors' => $errors]);
+		$page_content = render_template('login', ['form' => $form, 'errors' => $errors]);
 	}
-	else {
-		header("Location: /index.php");
-		exit();
-	}
+	header("Location: /index.php");
+	exit();
+	
 }
-else {
-	$page_content = renderTemplate('login', ['errors' =>'']);
-}
+$page_content = render_template('login', ['errors' =>'']);
 
-$layout_content = renderTemplate('layout', [
+$layout_content = render_template('layout', [
 	'content'    => $page_content,
 	'categories' => [],
   'title'      => 'GifTube - Вход на сайт',
