@@ -33,7 +33,7 @@
                 <p class="lot-item__description"><?=htmlspecialchars($lot['message']); ?></p>
             </div>
             <div class="lot-item__right">
-            <?php if (isset($_SESSION['user']) && !(isset($_COOKIE["mybet[0]"])) ): ?>
+            <?php if (isset($_SESSION['user']) && !(isset($_COOKIE["mybet[$id]"])) ): ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
                         10:54:12
