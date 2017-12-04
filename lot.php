@@ -4,6 +4,7 @@ require_once("functions.php");
 require_once("data.php");
 
 $lot = null;
+$error = null;
 
 if (isset($_GET['id'])) {
   foreach ($items as $key => $value) {
@@ -11,21 +12,25 @@ if (isset($_GET['id'])) {
     $lot = $value;
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      if ($_POST['cost'] > $lot['lot-rate']) {
+      if ($_POST['cost'] > $lot['lot-rate'] && is_int($_POST['cost'])) {
         $mybet['cost'] = $_POST['cost'];
         $mybet['time'] = $now;
         $expire = strtotime("+30 days");
         $path = "/";
         setcookie("mybet[$key]", json_encode($mybet),  $expire, $path);
+        $error = null;
         header("Location: /mylots.php");
-      }   
+      }
+      else $error = "Ваша ставка должна быть больше минимальной ставки (в рублях)";
     }
 
     $page_content = render_template("lot", [
                                             'categories' => $categories,
                                             'lot' => $lot,
                                             'lot_time_remaining' => $lot_time_remaining, 
-                                            'bets' => $bets, 'id' => $key
+                                            'bets' => $bets,
+                                            'id' => $key,
+                                            'error' => $error
                                           ]);
     $layout_content = render_template("layout", [
                                                 'content' => $page_content,

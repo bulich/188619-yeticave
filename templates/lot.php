@@ -9,7 +9,8 @@
                 <p class="lot-item__description"><?=htmlspecialchars($lot['message']); ?></p>
             </div>
             <div class="lot-item__right">
-            <?php if (isset($_SESSION['user']) && empty($_COOKIE["mybet"][$id]) ): ?>
+            <?php  $class = (!empty($error)) ? "form__item--invalid" : "";
+                   if (isset($_SESSION['user']) && empty($_COOKIE["mybet"][$id]) ): ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
                         11:36
@@ -23,13 +24,15 @@
                             Мин. ставка <span><?=htmlspecialchars($lot['lot-rate']); ?></span>
                         </div>
                     </div>
-                    <form class="lot-item__form" method="post">
+                    <form class="lot-item__form <?=$class; ?>" method="post">
                         <p class="lot-item__form-item">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="number" name="cost" placeholder="12 000">
+                            <span class="form__error"><?=$error; ?></span>
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
+                    <span class="form__error"><?=$error; ?></span>
                 </div>
             <?php endif; ?>
                 <div class="history">
