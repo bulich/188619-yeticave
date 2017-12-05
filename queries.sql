@@ -8,149 +8,46 @@ INSERT INTO categories VALUES
 ('Инструменты');
 
 /* Пользователи*/
-INSERT INTO users SET
-  reg_date = '2017-08-08',
-  email = 'ignat.v@gmail.com',
-  username = 'Игнат',
-  pass = '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka',
-  avatar = 'img/user.jpg',
-  contacts = 'ignat.v@gmail.com',
-  lots_id = 0,
-  bets_id = 0;
-
-INSERT INTO users SET
-  reg_date = '2017-10-02',
-  email = 'kitty_93@li.ru',
-  username = 'Леночка',
-  pass = '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa',
-  avatar = 'img/user.jpg',
-  contacts = 'kitty_93@li.ru',
-  lots_id = 0,
-  bets_id = 0;
-
-INSERT INTO users SET
-  reg_date = '2017-05-15',
-  email = 'warrior07@mail.ru',
-  username = 'Руслан',
-  pass = '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW',
-  avatar = 'img/user.jpg',
-  contacts = 'kitty_93@li.ru',
-  lots_id = 0,
-  bets_id = 0;
+INSERT INTO users (reg_date, email, username, pass, avatar, contacts, lots_id, bets_id)
+  VALUES ('2017-08-08', 'ignat.v@gmail.com', 'Игнат', '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka', 'img/user.jpg', 'ignat.v@gmail.com', 0, 2),
+  VALUES ('2017-10-02', 'kitty_93@li.ru', 'Леночка', '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa', 'img/user.jpg', 'kitty_93@li.ru', 1, 1),
+  VALUES ('2017-05-15', 'warrior07@mail.ru', 'Руслан', '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW', 'img/user.jpg', 'kitty_93@li.ru', 2, 0);
 
 /* Лоты*/
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = '2014 Rossignol District Snowboard',
-  message = '2014 Rossignol District Snowboard',
-  img = 'lot-1.jpg',
-  rate = 10000,
-  end_date = '2017-12-21',
-  step = 1000,
-  author_id = 1,
-  winner_id = 2,
-  category_name = 'Доски и лыжи',
-  is_open = 1;
-
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = 'DC Ply Mens 2016/2017 Snowboard',
-  message = 'DC Ply Mens 2016/2017 Snowboard',
-  img = 'lot-2.jpg',
-  rate =5000,
-  end_date = '2017-12-30',
-  step = 500,
-  author_id = 2,
-  winner_id = 0,
-  category_name = 'Доски и лыжи',
-  is_open = 1;
-
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = 'Крепления Union Contact Pro 2015 года размер L/XL',
-  message = 'Крепления Union Contact Pro 2015 года размер L/XL',
-  img = 'lot-3.jpg',
-  rate = 6000,
-  end_date = '2017-12-19',
-  step = 250,
-  author_id = 0,
-  winner_id = 1,
-  category_name = 'Крепления',
-  is_open = 1;
-
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = 'Ботинки для сноуборда DC Mutiny Charocal',
-  message = 'Ботинки для сноуборда DC Mutiny Charocal',
-  img = 'lot-4.jpg',
-  rate = 7999,
-  end_date = '2017-12-12',
-  step = 500,
-  author_id = 2,
-  winner_id = 1,
-  category_name = 'Ботинки',
-  is_open = 1;
-
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = 'Куртка для сноуборда DC Mutiny Charocal',
-  message = 'Куртка для сноуборда DC Mutiny Charocal',
-  img = 'lot-5.jpg',
-  rate = 8600,
-  end_date = '2017-12-15',
-  step = 250,
-  author_id = 0,
-  winner_id = 2,
-  category_name = 'Одежда',
-  is_open = 1;
-
-INSERT INTO lot SET
-  create_date = '2017-12-01',
-  name = 'Маска Oakley Canopy',
-  message = 'Маска Oakley Canopy',
-  img = 'lot-6.jpg',
-  rate = 3200,
-  end_date = '2017-12-16',
-  step = 340,
-  author_id = 1,
-  winner_id = 0,
-  category_name = 'Разное',
-  is_open = 1;
-
+INSERT INTO lots (create_date, name, message, img, rate, end_date, step, author_id, winner_id, category_id, is_open)
+  VALUES ('2017-12-01', '2014 Rossignol District Snowboard', '2014 Rossignol District Snowboard', 'lot-1.jpg', 10000, '2017-12-21', 1000, 1, 2, 0, 1),
+  VALUES ('2017-12-01', 'DC Ply Mens 2016/2017 Snowboard', 'DC Ply Mens 2016/2017 Snowboard', 'lot-2.jpg', 5000, '2017-12-30', 500, 2, 0, 0, 1),
+  VALUES ('2017-12-01', 'Крепления Union Contact Pro 2015 года размер L/XL', 'Крепления Union Contact Pro 2015 года размер L/XL', 'lot-3.jpg', 6000, '2017-12-19', 250, 0, 1, 1, 1),
+  VALUES ('2017-12-01', 'Ботинки для сноуборда DC Mutiny Charocal', 'Ботинки для сноуборда DC Mutiny Charocal', 'lot-4.jpg', 7999, '2017-12-12', 500, 2, 1, 2, 1),
+  VALUES ('2017-12-01', 'Куртка для сноуборда DC Mutiny Charocal', 'Куртка для сноуборда DC Mutiny Charocal', 'lot-5.jpg', 8600, '2017-12-15', 250, 0, 2, 3, 1),
+  VALUES ('2017-12-01', 'Маска Oakley Canopy', 'Маска Oakley Canopy', 'lot-6.jpg', 3200, '2017-12-16', 320, 1, 0, 4, 1),
 
 /*Ставки*/
-INSERT INTO bet SET
-  create_date = '2017-12-02',
-  price = 10000,
-  author_id = 1,
-  lot_id = 2;
+INSERT INTO bets (create_date, price, author_id, lot_id)
+  VALUES ('2017-12-02', 10000, 1, 2)
+  VALUES ('2017-12-02', 12000, 0, 5)
 
-INSERT INTO bet SET
-  create_date = '2017-12-02',
-  price = 12000,
-  author_id = 0,
-  lot_id = 5;
 
 /*Объединения*/
-SELECT lot.id, lot.author_id FROM lot
+SELECT lots.id, lots.author_id FROM lots
 JOIN users
-ON lot.author_id = users.id;
+ON lots.author_id = users.id;
 
-SELECT lot.id, lot.winner_id FROM lot
+SELECT lots.id, lots.winner_id FROM lots
 JOIN users
-ON lot.winner_id = users.id;
+ON lots.winner_id = users.id;
 
-SELECT lot.id, lot.category_name FROM lot
+SELECT lots.id, lots.category_name FROM lots
 JOIN categories
-ON lot.category_name = categories.name;
+ON lots.category_id = categories.id;
 
-SELECT bet.id, bet.author_id FROM bet
+SELECT bets.id, bets.author_id FROM bets
 JOIN users
-ON bet.author_id = users.id;
+ON bets.author_id = users.id;
 
-SELECT bet.id, bet.lot_id FROM bet
-JOIN lot
-ON bet.lot_id = lot.id;
+SELECT bets.id, bets.lot_id FROM bets
+JOIN lots
+ON bets.lot_id = lots.id;
 
 /*получить список из всех категорий*/
 
@@ -158,16 +55,16 @@ SELECT * FROM categories;
 
 /*получить самые новые, открытые лоты*/
 
-SELECT * FROM lot WHERE is_open = 1;
+SELECT * FROM lots WHERE is_open = 1;
 
 /*найти лот по его названию или описанию*/
 
-SELECT * FROM lot WHERE name = 'Куртка для сноуборда DC Mutiny Charocal';
+SELECT * FROM lots WHERE name = 'Куртка для сноуборда DC Mutiny Charocal';
 
 /*обновить название лота по его идентификатору*/
 
-UPDATE lot SET name = 'Новое название' WHERE id = 2;
+UPDATE lots SET name = 'Новое название' WHERE id = 2;
 
 /*получить список самых свежих ставок для лота по его идентификатору*/
 
-SELECT * FROM bet WHERE lot_id = 2 ORDER BY create_date DESC;
+SELECT * FROM bets WHERE lot_id = 2 ORDER BY create_date DESC;
