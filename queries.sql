@@ -1,11 +1,11 @@
 /* Категории */
-INSERT INTO categories VALUES 
-('Доски и лыжи'),
-('Крепления'),
-('Ботинки'),
-('Одежда'),
-('Разное'),
-('Инструменты');
+INSERT INTO categories (name)
+  VALUES ('Доски и лыжи'),
+  VALUES ('Крепления'),
+  VALUES ('Ботинки'),
+  VALUES ('Одежда'),
+  VALUES ('Разное'),
+  VALUES ('Инструменты');
 
 /* Пользователи*/
 INSERT INTO users (reg_date, email, username, pass, avatar, contacts, lots_id, bets_id)
