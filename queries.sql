@@ -28,7 +28,7 @@ INSERT INTO bets (create_date, price, author_id, lot_id)
   VALUES ('2017-12-02 00:00:00', 12000, 0, 5);
 
 
-/*Объединения*/
+/*Объединения  */
 SELECT lot_id, create_date, name, image_path end_date, author_id, winner_id FROM lots
 JOIN users
 ON lots.author_id = users.id;
