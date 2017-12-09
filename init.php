@@ -11,3 +11,15 @@
   $tomorrow = strtotime('tomorrow midnight');
   $now = strtotime('now');
   $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
+
+
+  $con = mysqli_connect('localhost', 'root', '', 'yeticave');
+  mysqli_set_charset($con, "utf8");
+
+  if ($con == false) {
+    $page_content = render_template("error", ['error_message' => "Ошибка подключения: " . mysqli_connect_error()]);
+    $layout_content = render_template("layout", ['content' => $page_content, 'title' => "Ошибка"]);
+    print($layout_content);
+    exit;
+  }
+

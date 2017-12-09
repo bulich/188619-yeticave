@@ -1,8 +1,9 @@
 <?php
-require_once("init.php");
 require_once('userdata.php');
 require_once("functions.php");
 require_once("data.php");
+require_once("mysql_helper.php");
+require_once("init.php");
 
 $page_content = render_template("index", [
                                           'categories' => $categories,
