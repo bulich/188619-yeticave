@@ -9,19 +9,21 @@ if (isset($_COOKIE["mybet"])) {
   $get_mybets = json_decode(json_encode($_COOKIE["mybet"]));
 
   $page_content = render_template("mylots", [
-                                              'categories' => $categories,
+                                              'categories' => get_categories($con),
                                               'items' => $items,
                                               'bets' => $get_mybets
                                             ]);
-
-  $layout_content = render_template("layout", [
-                                              'content' => $page_content,
-                                              'title' => 'Мои ставки'
-                                              ]);
 }
-else $layout_content = render_template("layout", [
-  'content' => "<h1>Вы пока не делали ставок</h1>",
+else $page_content = render_template("error", [
+  'categories' => get_categories($con),
+  'error_message' => "Вы пока не делали ставок",
   'title' => 'Мои ставки'
 ]);
+
+$layout_content = render_template("layout", [
+  'categories' => get_categories($con),
+  'content' => $page_content,
+  'title' => 'Мои ставки'
+  ]);
 
 print($layout_content);

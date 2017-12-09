@@ -7,11 +7,6 @@
   define('ONEHOUR', 3600);    //Временная метка для одного часа(3600 секунд)
   date_default_timezone_set('Europe/Moscow');
   
-  $lot_time_remaining = "00:00";
-  $tomorrow = strtotime('tomorrow midnight');
-  $now = strtotime('now');
-  $lot_time_remaining = gmdate("H:i", $tomorrow - $now);
-
 
   $con = mysqli_connect('localhost', 'root', '', 'yeticave');
   mysqli_set_charset($con, "utf8");

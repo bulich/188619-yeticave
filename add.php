@@ -1,6 +1,4 @@
 <?php
-
-
 require_once("functions.php");
 require_once("data.php");
 require_once("mysql_helper.php");
@@ -76,7 +74,7 @@ if (isset($_SESSION['user'])) {
 
 	$layout_content = render_template('layout', [
 		'content'    => $page_content,
-		'categories' => [],
+		'categories' => get_categories($con),
 		'title'      => 'Yeticave - Добавление добавление лота'
 	]);
 

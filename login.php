@@ -40,7 +40,7 @@ $page_content = render_template('login', ['errors' =>'']);
 
 $layout_content = render_template('layout', [
 	'content'    => $page_content,
-	'categories' => [],
+	'categories' => get_categories($con),
   'title'      => 'GifTube - Вход на сайт',
 ]);
 
