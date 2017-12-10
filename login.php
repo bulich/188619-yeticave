@@ -1,13 +1,12 @@
 <?php
 require_once('functions.php');
-require_once('data.php');
-require_once('userdata.php');
-require_once("mysql_helper.php");
 require_once("init.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$form = $_POST;
+
+	$user = [];
 
 	$required = ['email', 'password'];
 	$dict = ['email' => 'Email', 'password' => 'Пароль'];
@@ -20,13 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 
-	if ($user = searchUserByEmail($form['email'], $users)) {
-		if (password_verify($form['password'], $user['password'])) {
+	if ($user = search_by_email($con, $form['email'])) {
+		if (password_verify($form['password'], $user['pass'])) {
 			$_SESSION['user'] = $user;
 		}
 			$errors[$dict['password']] = 'Неверный пароль';
 	}
-	$errors[$dict['email']] = 'Такой пользователь не найден';
+	else $errors[$dict['email']] = 'Такой пользователь не найден';
+
+	
 
 
 	if (count($errors)) {

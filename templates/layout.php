@@ -27,7 +27,7 @@
                 <img src="<?=htmlspecialchars($_SESSION['user']['avatar']); ?>" width="40" height="40" alt="Пользователь">
             </div>
             <div class="user-menu__logged">
-                <p><?=htmlspecialchars($_SESSION['user']['name']); ?></p>
+                <p><?=htmlspecialchars($_SESSION['user']['username']); ?></p>
                 <a href="/logout.php">Выход</a>
             </div>
         <?php else: ?>

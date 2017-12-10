@@ -5,7 +5,7 @@
     <h2>Вход</h2>
     <div class="form__item <?=$class;?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
-      <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($value);?>" required>
+      <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($value);?>">
       <?php if ($class): ?>
       <span class="form__error"><?=$errors['Email'];?></span>
       <?php endif; ?>
@@ -14,7 +14,7 @@
 				  $value = isset($form['password']) ? $form['password'] : ""; ?>
     <div class="form__item form__item--last <?=$class;?>">
       <label for="password">Пароль*</label>
-      <input id="password" type="text" name="password" value="<?=htmlspecialchars($value);?>" placeholder="Введите пароль" required>
+      <input id="password" type="text" name="password" value="<?=htmlspecialchars($value);?>" placeholder="Введите пароль">
       <?php if ($class): ?>
       <span class="form__error"><?=$errors['Пароль'];?></span>
       <?php endif; ?>

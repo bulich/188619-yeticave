@@ -1,5 +1,4 @@
 <?php
-
    require_once("mysql_helper.php");
    require_once("init.php");
 
@@ -28,16 +27,18 @@
       }
   }
 
-  function searchUserByEmail($email, $users) {
-	$result = null;
-	foreach ($users as $user) {
-		if ($user['email'] == $email) {
-			$result = $user;
-			break;
-		}
-	}
-    return $result;
+  function search_by_email($con, $email) {
+    $result = null;
+    $sql = 'SELECT id, pass, email, username, avatar FROM users '
+    . "WHERE email = '$email'";
+
+    $result = mysqli_query($con, $sql);
+  
+    if ($result) {
+        return mysqli_fetch_array($result, MYSQLI_ASSOC);
     }
+    return false;
+   }
 
 
    function time_remaining($end_time) {
@@ -89,11 +90,35 @@
         }
     }
 
+    function add_user($con, $email, $username, $pass, $avatar, $contacts){
+        $sql = 'INSERT INTO users (reg_date, email, username, pass, avatar, contacts) ' 
+        . 'VALUES (NOW(), ?, ?, ?, ?, ?)';
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'sssss', $email, $username, $pass, $avatar, $contacts);
+        $res = mysqli_stmt_execute($stmt);
+        if (!$res) {
+            return mysqli_error($con);
+        }
+    }
+
     function get_id($con) {
         $sql = 'SELECT id FROM users '
-        . "WHERE id = $_S";
+        . "WHERE id = ";
         
     }
+
+    function get_password($con, $email) {
+        $sql = 'SELECT password FROM users '
+        . "WHERE email = '$email'";
+    
+        $result = mysqli_query($con, $sql);
+      
+        if ($result) {
+            $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return array_shift($arr);
+        }
+        return  mysqli_error($con);
+       }
 
 
 ?>
