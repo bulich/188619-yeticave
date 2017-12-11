@@ -65,7 +65,9 @@ if (isset($_SESSION['user'])) {
 			$page_content = render_template('add', ['lot' => $lot, 'errors' => $errors]);
 		}
 		else {
-			$page_content = render_template('lot', ['lot' => $lot, 'bets' => $bets, 'id' => ""]);
+			add_lot($con, $lot['lot-name'], $lot['message'], $lot['path'], $lot['lot-rate'], $lot['lot-date'], $lot['lot-step'], get_id(), $lot['category']);
+			$id = mysqli_insert_id($con);
+			header("Location: /lot.php?id=$id");
 		}
 	}
 	else {

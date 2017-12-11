@@ -80,14 +80,17 @@
         return  mysqli_error($con);
     }
 
-    function add_bet($con, $price, $author_id, $lot_id){
-        $sql = 'INSERT INTO bets (create_date, price, author_id, lot_id) VALUES (NOW(), ?)';
-        $stmt = mysqli_prepare($con, $sql);
-        mysqli_stmt_bind_param($stmt, 'i', $price);
-        $res = mysqli_stmt_execute($stmt);
-        if (!res) {
-            return mysqli_error($link);
+    function item_by_id($con, $lot_id) {
+        $sql = 'SELECT lot_id, image_path, category_title, name, end_date FROM lots '
+        . 'INNER JOIN categories ON lots.category_id = categories.category_id '
+        . "WHERE lot_id = $lot_id";
+
+        $result = mysqli_query($con, $sql);
+      
+        if ($result) {
+            return mysqli_fetch_array($result, MYSQLI_ASSOC);
         }
+        return  mysqli_error($con);
     }
 
     function add_user($con, $email, $username, $pass, $avatar, $contacts){
@@ -101,10 +104,34 @@
         }
     }
 
-    function get_id($con) {
-        $sql = 'SELECT id FROM users '
-        . "WHERE id = ";
-        
+    function add_lot($con, $name, $description, $image_path, $rate, $end_date, $step, $author_id, $category_id){
+        $sql = 'INSERT INTO lots (lots.create_date, name, description, image_path, rate, end_date, step, lots.author_id, lots.category_id) ' 
+        . 'VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?)';
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'sssisiii', $name, $description, $image_path, $rate, $end_date, $step, $author_id, $category_id);
+        $res = mysqli_stmt_execute($stmt);
+        if (!$res) {
+            return mysqli_error($con);
+        }
+    }
+
+
+    function add_bet($con, $price, $author_id, $lot_id){
+        $sql = 'INSERT INTO bets (create_date, price, author_id, lot_id) ' 
+        . "VALUES (NOW(), ?, $author_id, $lot_id)";
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $price);
+        $res = mysqli_stmt_execute($stmt);
+        if (!$res) {
+            return mysqli_error($con);
+        }
+    }
+
+    function get_id() {
+      if (isset($_SESSION['user'])) {
+          return $_SESSION['user']['id'];
+      }
+      else return null;
     }
 
     function get_password($con, $email) {

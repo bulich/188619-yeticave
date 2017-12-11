@@ -19,12 +19,12 @@
         <label for="category">Категория</label>
         <select id="category" name="category" value="<?=$value;?>" >
           <option>Выберите категорию</option>
-          <option value="Доски и лыжи">Доски и лыжи</option>
-          <option value="Крепления">Крепления</option>
-          <option value="Ботинки">Ботинки</option>
-          <option value="Одежда">Одежда</option>
-          <option value="Инструменты">Инструменты</option>
-          <option value="Разное">Разное</option>
+          <option value="1">Доски и лыжи</option>
+          <option value="2">Крепления</option>
+          <option value="3">Ботинки</option>
+          <option value="4">Одежда</option>
+          <option value="6">Инструменты</option>
+          <option value="5">Разное</option>
         </select>
         <span class="form__error"><?="Выберите категорию"?></span>
       </div>

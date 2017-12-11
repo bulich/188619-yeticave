@@ -11,15 +11,17 @@ if (isset($_GET['id'])) {
   foreach (get_items($con) as $value) {
   if ($value['lot_id'] == $_GET['id']) {
     $lot = $value;
+    $lot_id = $value['lot_id'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if ($_POST['cost'] > ($lot['rate'] + $lot['step']) && is_numeric($_POST['cost'])) {
         $mybet['cost'] = $_POST['cost'];
-        $mybet['time'] = $now;
+        $mybet['time'] = strtotime('now');
+        $mybet['lot_id'] = $lot_id;
         $expire = strtotime("+30 days");
         $path = "/";
-        setcookie("mybet[$key]", json_encode($mybet), $expire, $path);
-        
+        setcookie("mybet[$lot_id]", json_encode($mybet), $expire, $path);
+        add_bet($con, $mybet['cost'], get_id(), $lot_id);
         $error = null;
         header("Location: /mylots.php");
       }
@@ -27,7 +29,6 @@ if (isset($_GET['id'])) {
     }
 
     $page_content = render_template("lot", [
-                                            'categories' => get_categories($con),
                                             'lot' => $lot,
                                             'bets' => get_bets($con, $value['lot_id']),
                                             'id' => $value['lot_id'],
