@@ -2,41 +2,36 @@
 require_once('functions.php');
 require_once("init.php");
 
+$errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$form = $_POST;
+if (($_SERVER['REQUEST_METHOD'] == 'POST') && empty($errors)) {
+	$email_received = $_POST['email'];
+	$password_received = $_POST['password'];
 
-	$user = [];
+	if ($user = search_by_email($con, $email_received)) {
+			$password_hash = $user['pass'];
 
-	$required = ['email', 'password'];
-	$dict = ['email' => 'Email', 'password' => 'Пароль'];
-	$errors = [];
-	foreach ($_POST as $key => $value) {
-		if (in_array($key, $required)) {
-			if (!$value) {
-				$errors[$dict[$key]] = 'Это поле надо заполнить';
+			if (password_verify($password_received, $password_hash)) {
+					$_SESSION['user'] = $user;
+					header("Location: /index.php");
 			}
-		}
+			else {
+					$errors['password'] = 'Вы ввели неверный пароль';
+					$content = render_template('login', ['form' => $_POST, 'errors' => $errors]);
+					$layout_template = render_template('layout', ['title' => 'GifTube - Вход на сайт', 'categories' => get_categories($con), 'content' => $content]);
+					print ($layout_template);
+					exit();
+			}
 	}
-
-	if ($user = search_by_email($con, $form['email'])) {
-		if (password_verify($form['password'], $user['pass'])) {
-			$_SESSION['user'] = $user;
-		}
-			$errors[$dict['password']] = 'Неверный пароль';
+	else {
+			$errors['email'] = 'Пользователя с таким email не существует';
+			$content = render_template('login', ['categories' => get_categories($con), 'form' => $_POST, 'errors' => $errors]);
+			$layout_template = render_template('layout', ['title' => 'GifTube - Вход на сайт', 'categories' => get_categories($con), 'content' => $content]);
+			print ($layout_template);
+			exit();
 	}
-	else $errors[$dict['email']] = 'Такой пользователь не найден';
-
-	
-
-
-	if (count($errors)) {
-		$page_content = render_template('login', ['form' => $form, 'errors' => $errors]);
-	}
-	header("Location: /index.php");
-	exit();
-	
 }
+
 $page_content = render_template('login', ['errors' =>'']);
 
 $layout_content = render_template('layout', [

@@ -5,7 +5,7 @@
         <ul class="promo__list">
         <?php foreach ($categories as $value): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="all-lots.html"><?=$value['category_title']; ?></a>
+                <a class="promo__link" href="/"><?=$value['category_title']; ?></a>
             </li>
         <?php endforeach; ?>
         </ul>
@@ -37,4 +37,13 @@
         <?php endforeach; ?>
         </ul>
     </section>
+    <?php if ($pages_count > 1): ?>
+    <ul class="pagination-list">
+      <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
+      <?php foreach ($pages as $page): ?>
+      <li class="pagination-item <?php if ($page == $cur_page): ?>pagination-item-active<?php endif; ?>"><a href="/?page=<?=$page;?>"><?=$page;?></a></li>
+      <?php endforeach; ?>
+      <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
+    </ul>
+    <?php endif; ?>
 </main>

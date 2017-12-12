@@ -1,5 +1,5 @@
 <?php $classname = ($errors) ? "form--invalid" : ""; 
-				$class = isset($errors['Email']) ? "form__item--invalid" : "";
+				$class = isset($errors['email']) ? "form__item--invalid" : "";
 				$value = isset($form['email']) ? $form['email'] : ""; ?>
   <form class="form container <?=$classname;?>" action="login.php" method="post"> <!-- form--invalid -->
     <h2>Вход</h2>
@@ -7,16 +7,16 @@
       <label for="email">E-mail*</label>
       <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($value);?>">
       <?php if ($class): ?>
-      <span class="form__error"><?=$errors['Email'];?></span>
+      <span class="form__error"><?=$errors['email'];?></span>
       <?php endif; ?>
     </div>
-    <?php $class = isset($errors['Пароль']) ? "form__item--invalid" : "";
+    <?php $class = isset($errors['password']) ? "form__item--invalid" : "";
 				  $value = isset($form['password']) ? $form['password'] : ""; ?>
     <div class="form__item form__item--last <?=$class;?>">
       <label for="password">Пароль*</label>
       <input id="password" type="text" name="password" value="<?=htmlspecialchars($value);?>" placeholder="Введите пароль">
       <?php if ($class): ?>
-      <span class="form__error"><?=$errors['Пароль'];?></span>
+      <span class="form__error"><?=$errors['password'];?></span>
       <?php endif; ?>
     </div>
     <button type="submit" class="button">Войти</button>

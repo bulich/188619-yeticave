@@ -1,7 +1,5 @@
 <?php
-require_once('userdata.php');
 require_once("functions.php");
-require_once("data.php");
 require_once("init.php");
 
 $user = null;
@@ -18,6 +16,7 @@ $user = null;
 						'message' => 'message'
 					];
 		$errors = [];
+		
 		foreach ($_POST as $key => $value) {
 			if (in_array($key, $required)) {
 				if (!$value) {
@@ -36,19 +35,17 @@ $user = null;
 		}
 		
 
-
-		if (isset($_FILES['image'])) {
-			$tmp_name = $_FILES['image']['tmp_name'];
-			$path = $_FILES['image']['name'];
-
+		if (isset($_FILES['photo']['name'])) {
+			$tmp_name = $_FILES['photo']['tmp_name'];
+			$file_name = $_FILES['photo']['name'];
 			$finfo = finfo_open(FILEINFO_MIME_TYPE);
 			$file_type = finfo_file($finfo, $tmp_name);
-			if ($file_type !== "image/jpeg" && $file_type !== "image/png") {
-				$errors['Файл'] = 'Загрузите изображение в формате jpg или png';
-			}
-			else {
-				move_uploaded_file($tmp_name, 'img/' . $path);
-				$user['image-path'] = $path;
+			if (!in_array($file_type, ['image/jpeg', 'image/png'])) {
+					$errors['Файл'] = "Загрузите изображение в формате jpg или png";
+			} else {
+					$file_path = "img/" . $file_name;
+					move_uploaded_file($tmp_name, $file_path);
+					$user['image-path'] = $file_path;
 			}
 		}
 		else {

@@ -6,7 +6,7 @@
           $value = (!empty($user['email'])) ? $user['email'] : ""; ?>  
     <div class="form__item <?=$class;?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
-      <input id="email" type="text" name="email" value="<?=$value;?>" placeholder="Введите e-mail">
+      <input id="email" type="text" name="email" value="<?=htmlspecialchars($value);?>" placeholder="Введите e-mail">
       <span class="form__error"><?=$errors['email']; ?></span>
     </div>
 
@@ -21,7 +21,7 @@
           $value = (!empty($user['name'])) ? $user['name'] : ""; ?> 
     <div class="form__item <?=$class;?>">
       <label for="name">Имя*</label>
-      <input id="name" type="text" name="name" value="<?=$value;?>" placeholder="Введите имя">
+      <input id="name" type="text" name="name" value="<?=htmlspecialchars($value);?>" placeholder="Введите имя">
       <span class="form__error"><?=$errors['password']; ?></span>
     </div>
 
@@ -30,7 +30,7 @@
           $value = (!empty($user['message'])) ? $user['message'] : ""; ?> 
     <div class="form__item <?=$class;?>">
       <label for="message">Контактные данные*</label>
-      <textarea id="message" name="message" value="<?=$value;?>" placeholder="Напишите как с вами связаться"></textarea>
+      <textarea id="message" name="message" value="<?=htmlspecialchars($value);?>" placeholder="Напишите как с вами связаться"></textarea>
       <span class="form__error"><?=$errors['message']; ?></span>
     </div>
 
@@ -41,11 +41,11 @@
       <div class="preview">
         <button class="preview__remove" type="button">x</button>
         <div class="preview__img">
-          <img src="img/<?=$value;?>" width="113" height="113" alt="Ваш аватар">
+          <img src="img/<?=htmlspecialchars($value);?>" width="113" height="113" alt="Ваш аватар">
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" type="file" name="image" id="photo2">
+        <input class="visually-hidden" type="file" id="photo2" name="photo" value="<?=$value; ?>">
         <label for="photo2">
           <span>+ Добавить</span>
         </label>

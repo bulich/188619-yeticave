@@ -147,5 +147,21 @@
         return  mysqli_error($con);
        }
 
+    function get_items_count($con) {
+        $result = mysqli_query($con, "SELECT COUNT(*) as cnt FROM lots");
+        return mysqli_fetch_assoc($result)['cnt'];
+    }
+
+    function get_page_item($con, $page_items, $offset) {
+        $sql = 'SELECT lot_id, image_path, name, lots.category_id, rate, step, description, end_date, categories.category_title FROM lots '
+        . 'INNER JOIN categories ON lots.category_id = categories.category_id '
+        . 'ORDER BY name DESC LIMIT ' . $page_items . ' OFFSET ' . $offset;
+        $result = mysqli_query($con, $sql);
+        
+        if ($result) {
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
+        return  mysqli_error($con);
+    }
 
 ?>
