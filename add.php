@@ -59,6 +59,13 @@ if (isset($_SESSION['user'])) {
 			$errors['Файл'] = 'Вы не загрузили изображение';
 		}
 
+		if ($lot['category'] == 0) {
+			if(!in_array($lot['category'], get_categories($con))) {
+				$errors['Категория'] = 'Такой категории не существует';
+			}
+			$errors['Категория'] = 'Выберите категорию';
+		}
+
 			
 		if (count($errors)) {
 			$page_content = render_template('add', ['lot' => $lot, 'errors' => $errors]);

@@ -70,9 +70,12 @@
     function get_bets($con, $item_id) {
         $sql = 'SELECT author_id, lot_id, price, bets.create_date, users.username FROM bets '
         . 'INNER JOIN users ON bets.author_id = users.id '
-        . "WHERE lot_id = $item_id";
+        . "WHERE lot_id = ?";
 
-        $result = mysqli_query($con, $sql);
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $item_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
       
         if ($result) {
             return mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -83,9 +86,12 @@
     function item_by_id($con, $lot_id) {
         $sql = 'SELECT lot_id, image_path, category_title, name, end_date FROM lots '
         . 'INNER JOIN categories ON lots.category_id = categories.category_id '
-        . "WHERE lot_id = $lot_id";
+        . "WHERE lot_id = ?";
 
-        $result = mysqli_query($con, $sql);
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $lot_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
       
         if ($result) {
             return mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -131,21 +137,8 @@
       if (isset($_SESSION['user'])) {
           return $_SESSION['user']['id'];
       }
-      else return null;
     }
 
-    function get_password($con, $email) {
-        $sql = 'SELECT password FROM users '
-        . "WHERE email = '$email'";
-    
-        $result = mysqli_query($con, $sql);
-      
-        if ($result) {
-            $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            return array_shift($arr);
-        }
-        return  mysqli_error($con);
-       }
 
     function get_items_count($con) {
         $result = mysqli_query($con, "SELECT COUNT(*) as cnt FROM lots");
@@ -155,9 +148,12 @@
     function get_page_item($con, $page_items, $offset) {
         $sql = 'SELECT lot_id, image_path, name, lots.category_id, rate, step, description, end_date, categories.category_title FROM lots '
         . 'INNER JOIN categories ON lots.category_id = categories.category_id '
-        . 'ORDER BY name DESC LIMIT ' . $page_items . ' OFFSET ' . $offset;
-        $result = mysqli_query($con, $sql);
-        
+        . 'ORDER BY end_date DESC LIMIT ? OFFSET ?';
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'ii', $page_items, $offset);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+      
         if ($result) {
             return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }

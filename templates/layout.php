@@ -49,7 +49,7 @@
     <ul class="nav__list container">
     <?php foreach ($categories as $value): ?>
         <li class="nav__item">
-            <a href="/"><?=$value['category_title']; ?></a>
+            <a href="/"><?=htmlspecialchars($value['category_title']); ?></a>
         </li>
     <?php endforeach; ?>
     </ul>
@@ -62,7 +62,7 @@
         <ul class="nav__list container">
         <?php foreach ($categories as $value): ?>
             <li class="nav__item">
-                <a href="/"><?=$value['category_title']; ?></a>
+                <a href="/"><?=htmlspecialchars($value['category_title']); ?></a>
             </li>
         <?php endforeach; ?>
         </ul>

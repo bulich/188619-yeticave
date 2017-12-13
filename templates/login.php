@@ -5,16 +5,15 @@
     <h2>Вход</h2>
     <div class="form__item <?=$class;?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
-      <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($value);?>">
+      <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?=htmlspecialchars($value);?>" required>
       <?php if ($class): ?>
       <span class="form__error"><?=$errors['email'];?></span>
       <?php endif; ?>
     </div>
-    <?php $class = isset($errors['password']) ? "form__item--invalid" : "";
-				  $value = isset($form['password']) ? $form['password'] : ""; ?>
+    <?php $class = isset($errors['password']) ? "form__item--invalid" : "";?>
     <div class="form__item form__item--last <?=$class;?>">
       <label for="password">Пароль*</label>
-      <input id="password" type="text" name="password" value="<?=htmlspecialchars($value);?>" placeholder="Введите пароль">
+      <input id="password" type="text" name="password" placeholder="Введите пароль" required>
       <?php if ($class): ?>
       <span class="form__error"><?=$errors['password'];?></span>
       <?php endif; ?>

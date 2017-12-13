@@ -5,7 +5,7 @@
         <ul class="promo__list">
         <?php foreach ($categories as $value): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="/"><?=$value['category_title']; ?></a>
+                <a class="promo__link" href="/"><?=htmlspecialchars($value['category_title']); ?></a>
             </li>
         <?php endforeach; ?>
         </ul>
@@ -29,7 +29,7 @@
                             <span class="lot__cost"><?=htmlspecialchars($value['rate']); ?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
-                            <?=time_remaining($value['end_date']);?>
+                            <?=htmlspecialchars(time_remaining($value['end_date']));?>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
     <ul class="pagination-list">
       <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
       <?php foreach ($pages as $page): ?>
-      <li class="pagination-item <?php if ($page == $cur_page): ?>pagination-item-active<?php endif; ?>"><a href="/?page=<?=$page;?>"><?=$page;?></a></li>
+      <li class="pagination-item <?php if ($page == $cur_page): ?>pagination-item-active<?php endif; ?>"><a href="/?page=<?=htmlspecialchars($page);?>"><?=htmlspecialchars($page);?></a></li>
       <?php endforeach; ?>
       <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
     </ul>

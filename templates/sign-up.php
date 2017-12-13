@@ -1,19 +1,19 @@
 <?php $classname = ($errors) ? "form--invalid" : ""; ?>
-<form class="form container <?=$classname;?>" action="sign-up.php" method="post"> <!-- form--invalid -->
+<form class="form container <?=$classname;?>" action="sign-up.php" method="post" enctype="multipart/form-data"> <!-- form--invalid -->
     <h2>Регистрация нового аккаунта</h2>
 
     <?php $class = (!empty($errors['email'])) ? "form__item--invalid" : "";
           $value = (!empty($user['email'])) ? $user['email'] : ""; ?>  
     <div class="form__item <?=$class;?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
-      <input id="email" type="text" name="email" value="<?=htmlspecialchars($value);?>" placeholder="Введите e-mail">
+      <input id="email" type="text" name="email" value="<?=htmlspecialchars($value);?>" placeholder="Введите e-mail" required>
       <span class="form__error"><?=$errors['email']; ?></span>
     </div>
 
     <?php $class = (!empty($errors['password'])) ? "form__item--invalid" : ""; ?> 
     <div class="form__item <?=$class;?>">
       <label for="password">Пароль*</label>
-      <input id="password" type="text" name="password" placeholder="Введите пароль">
+      <input id="password" type="text" name="password" placeholder="Введите пароль" required>
       <span class="form__error"><?=$errors['password']; ?></span>
     </div>
 
@@ -21,7 +21,7 @@
           $value = (!empty($user['name'])) ? $user['name'] : ""; ?> 
     <div class="form__item <?=$class;?>">
       <label for="name">Имя*</label>
-      <input id="name" type="text" name="name" value="<?=htmlspecialchars($value);?>" placeholder="Введите имя">
+      <input id="name" type="text" name="name" value="<?=htmlspecialchars($value);?>" placeholder="Введите имя" required>
       <span class="form__error"><?=$errors['password']; ?></span>
     </div>
 
@@ -30,7 +30,7 @@
           $value = (!empty($user['message'])) ? $user['message'] : ""; ?> 
     <div class="form__item <?=$class;?>">
       <label for="message">Контактные данные*</label>
-      <textarea id="message" name="message" value="<?=htmlspecialchars($value);?>" placeholder="Напишите как с вами связаться"></textarea>
+      <textarea id="message" name="message" value="<?=htmlspecialchars($value);?>" placeholder="Напишите как с вами связаться" required></textarea>
       <span class="form__error"><?=$errors['message']; ?></span>
     </div>
 
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" type="file" id="photo2" name="photo" value="<?=$value; ?>">
+        <input class="visually-hidden" type="file" id="photo2" name="photo" value="<?=htmlspecialchars($value); ?>">
         <label for="photo2">
           <span>+ Добавить</span>
         </label>
@@ -55,6 +55,6 @@
     <span class="form__error form__error--bottom"><?=$errors['Файл']; ?></span>
     <?php endif; ?>
     <button type="submit" class="button">Зарегистрироваться</button>
-    <a class="text-link" href="#">Уже есть аккаунт</a>
+    <a class="text-link" href="/login.php">Уже есть аккаунт</a>
   </form>
 </main>

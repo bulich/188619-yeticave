@@ -4,7 +4,6 @@ require_once("init.php");
 
 $user = null;
 
-
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$user = $_POST;
@@ -34,8 +33,7 @@ $user = null;
 			$errors[$dict['email']] = 'Введите корректный email';
 		}
 		
-
-		if (isset($_FILES['photo']['name'])) {
+		if (is_uploaded_file($_FILES['photo']['name'])) {
 			$tmp_name = $_FILES['photo']['tmp_name'];
 			$file_name = $_FILES['photo']['name'];
 			$finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -51,9 +49,7 @@ $user = null;
 		else {
 			$user['image-path'] = "";
 		}
-
-
-			
+		
 		if (count($errors)) {
 			$page_content = render_template('sign-up', ['user' => $user, 'errors' => $errors]);
 		}
